@@ -1,11 +1,16 @@
 import Logo from '../images/logo.png'
-export default function Navbar(){
+export default function Navbar({SignedUser}){
+
+    const signOutUser = async () => {
+        localStorage.removeItem('token');
+      };
     return <div>
         <header className="navbar">
-            <img src={Logo} className="logo"></img>
+            <a href='/'><img src={Logo} className="logo"></img></a>
             <div>
-            <a className='nav-link'>Sign Up</a>
-            <a className='nav-link'>Sign In</a>
+            {!SignedUser && <a href='/signUp' className='nav-link'>Sign Up</a>}
+            {!SignedUser &&<a href='/signIn' className='nav-link'>Sign In</a>}
+            {SignedUser &&<a href='/' className='nav-link' onClick={signOutUser}>Sign Out</a>}
             </div>
         </header>
     </div>

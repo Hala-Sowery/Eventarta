@@ -23,7 +23,7 @@ export default function Card({ props, setActiveCard }) {
               </center>
               <section>
                 <div className="card-img">
-                  <img src={Event}></img>
+                  <img src={event.images[0]}></img>
                 </div>
                 <div className="box-container">
                   <div className="box">

@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
-
     def create
         begin
-            user = User.create!(user_params)
+            user = User.create!(name: params[:name], email: params[:email], password: params[:password])
+            token = generate_token(user.id, user.email)
 
             render json: {
-                status: "succeeded"
+                status: "succeeded",
+                token: token
             }, status: 200
         rescue ActiveRecord::RecordInvalid => invalid
             render json: {
@@ -13,10 +14,5 @@ class UsersController < ApplicationController
                 message: invalid.record.errors.objects.first.full_message
             }, status: 400
         end
-    end
-
-    private
-    def user_params
-        params.require(:user).permit(:name, :admin, :email, :password_digest)
     end
 end

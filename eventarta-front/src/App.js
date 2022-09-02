@@ -9,6 +9,7 @@ import { useState, useEffect, useModal } from "react";
 function App() {
   const [activeCard, setActiveCard] = useState(false);
   const [visibility, setVisibility] = useState(false);
+  const [SignedUser, setSignedUser] = useState(false);
 
   const popupCloseHandler = () => {
     setVisibility(false);
@@ -26,6 +27,22 @@ function App() {
       });
   };
 
+  const SignedUserExsist = async () => {
+    const token = localStorage.getItem('token');
+    await axios
+      .get("http://127.0.0.1:3000/sessions",{
+        headers: {
+          Authorization: 'Bearer ' + token //the token is a variable which holds the token
+        }})
+      .then(function (response) {
+        setSignedUser(response.data);
+        // console.log(response.data)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     if (activeCard !== false) {
       setVisibility(true);
@@ -36,6 +53,10 @@ function App() {
     fetchData();
   }, []);
 
+
+  useEffect(() => {
+    SignedUserExsist();
+  }, []);
   const date = new Date(activeCard.date);
         const day = date.getDate();
         const month = date.getMonth() + 1;
@@ -43,7 +64,7 @@ function App() {
         const newDate = day + "-" + month + "-" + year;
   return (
     <div className="App">
-      <Navbar />
+      <Navbar SignedUser = {SignedUser}/>
       <div>
     </div>
       <CustomPopup
@@ -54,9 +75,14 @@ function App() {
         Location = {activeCard.country+" - "+activeCard.city+" - "+activeCard.street}
         Capcity = {activeCard.capacity}
         Description ={activeCard.description}
+        images = {activeCard.images}
       >
       </CustomPopup>
+      <div className="UpComing-create">
       <h2 className="home-title">UpComing Events</h2>
+      { SignedUser &&<button className="create-button">Create Event</button>}
+      </div>
+      
       <div className="home-body">
         <Card
           className="card"
