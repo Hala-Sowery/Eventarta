@@ -1,12 +1,11 @@
-import Event from "../images/event.jpg";
+import Bookmark from "../images/bookmark.png";
 import Calender from "../images/calendar.png";
 import Location from "../images/location.png";
 import Info from "../images/info.png";
-import CustomPopup from "../components/CustomPopup";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
+import ReactTooltip from 'react-tooltip';
 
 export default function Card({ props, setActiveCard }) {
-  const ref = useRef(null);
   return (
     <div className="card-container">
       {props.map((event) => {
@@ -16,10 +15,10 @@ export default function Card({ props, setActiveCard }) {
         const year = date.getFullYear();
         const newDate = day + "-" + month + "-" + year;
         return (
-          <a onClick={() => setActiveCard(event)}>
+          <a onClick={() => setActiveCard(event)} key={event.id}>
             <div className="card-outer" key={event.id}>
               <center>
-                <h3 className="event-title">{event.title}</h3>
+                <h4 className="event-title">{event.title}</h4>
               </center>
               <section>
                 <div className="card-img">
@@ -28,7 +27,8 @@ export default function Card({ props, setActiveCard }) {
                 <div className="box-container">
                   <div className="box">
                     <div className="box-content">
-                      <center>{event.capacity} coming</center>
+                      <img className="bookmark" src={Bookmark}></img>
+                      <h4 className="bookmark-content">{event.joined}</h4>
                     </div>
                   </div>
                 </div>
@@ -40,17 +40,22 @@ export default function Card({ props, setActiveCard }) {
                     <img src={Calender} className="detail-logos"></img>
                     <h5 className="event-date">{newDate}</h5>
                   </div>
-                  <div className="inner-detail">
+                  <div className="inner-detail loc">
                     <img src={Location} className="detail-logos"></img>
-                    <h5 className="event-loc">
-                      {event.country +
-                        " - " +
-                        event.city +
-                        " - " +
-                        event.street}
-                    </h5>
-                  </div>
-                  {/* <p>{event.description}</p> */}
+                    {/* <p data-tip="hello world"></p> */}
+                    <ReactTooltip className="tooltip" backgroundColor="black" />
+                      <h5 data-tip={event.country +
+                          " - " +
+                          event.city +
+                          " - " +
+                          event.street} className="event-loc">
+                        {event.country +
+                          " - " +
+                          event.city +
+                          " - " +
+                          event.street}
+                      </h5>
+                    </div>
                   <div className="inner-detail">
                     <img src={Info} className="info-logo"></img>
                     <p className="event-desc">{event.description}</p>

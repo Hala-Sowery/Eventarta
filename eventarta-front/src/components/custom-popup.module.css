@@ -11,13 +11,15 @@
   z-index: 2;
 }
 .popup {
+  
   margin: 70px auto;
   padding: 20px;
   background: #fff;
   border-radius: 5px;
   width: 40%;
+  height: 76%;;
   position: relative;
-  /* transition: all 5s ease-in-out; */
+  transition: all 5s ease-in-out;
 }
 .popup h2 {
   margin-top: 0;
@@ -40,7 +42,7 @@
   color: #000;
 }
 .popup .content {
-  height: 400px;
+  height: 450px;
   overflow: auto;
 }
 

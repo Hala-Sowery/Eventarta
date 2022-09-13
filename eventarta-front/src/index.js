@@ -9,6 +9,7 @@ import { BrowserRouter } from 'react-router-dom';
 import SignUp from './Pages/SignUp';
 import SignIn from './Pages/SignIn';
 import MyEvents from './Pages/MyEvents'
+import CreateEvent from './Pages/CreateEvent';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -23,6 +24,7 @@ root.render(
         <Route path="/SignIn" element={<SignIn />}/>
         <Route path="/" element={<SignIn />}/>
         <Route path='/myEvents' element={ <MyEvents />}/>
+        <Route path='/event/create' element={ <CreateEvent />}/>
   </Routes>
   </BrowserRouter>,
   

@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-
+    before_action :current_user, only: [:create] 
     def index 
         comments = Comment.all
 
@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     end
     def create
         begin
-            comment = Comment.create!(comment_params)
+            comment = Comment.create!(user_id: @user.id, event_id: params[:event_id], content: params[:content])
 
             render json: {
                 status: "succeeded"
@@ -18,10 +18,5 @@ class CommentsController < ApplicationController
                 message: invalid.record.errors.objects.first.full_message
             }, status: 400
         end
-    end
-
-    private
-    def comment_params
-        params.require(:comment).permit(:user, :event, :content)
     end
 end

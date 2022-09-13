@@ -1,4 +1,5 @@
 class Event < ApplicationRecord
+  has_many :event_members
   belongs_to :user
   has_many_attached :images
   validates :title, presence: true

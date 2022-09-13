@@ -1,7 +1,7 @@
 .navbar {
-  background-color: white;
   height: 80px;
   display: flex;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   background: #ffffff;
@@ -14,13 +14,13 @@
   margin-left: 36px;
 }
 
-.UpComing-create{
+.UpComing-create {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.create-button{
+.create-button {
   height: 40px;
   width: 100px;
   margin: 16px 36px 16px 16px;
@@ -57,21 +57,23 @@
   margin-left: 36px;
 }
 
+/*----------------Card------------------------*/
 .card-outer > div {
-  flex: 1;
+  /* flex: 1;
   justify-content: center;
-  flex-direction: r;
+  flex-direction: r; */
 }
 
 .card-outer {
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
+  /* height: 350px; */
   /* background-color: #FFFFFF; */
   width: 270px;
   margin-left: 20px;
   margin-right: 20px;
   border-radius: 8px 8px 8px 8px;
-  box-shadow: 2px 2px 2px 2px rgba(0.1, 0.1, 0.1, 0.1);
+  box-shadow: 4px 4px 4px 4px rgba(0.1, 0.1, 0.1, 0.1);
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: 0.3s;
@@ -88,6 +90,7 @@
   max-height: 150px;
   border-radius: 4px;
   margin-left: 4px;
+  margin-top: -15px;
   /* position: relative; */
 }
 
@@ -113,26 +116,42 @@
 }
 
 .event-loc {
-  /* font-family: "GeneralSans-Semibold";
+  font-family: "GeneralSans-Semibold";
     src: url('../public/fonts/GeneralSans-Bold.ttf') format('truetype');
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.02em; */
+}
+
+.loc{
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  border: none;
+  opacity: 1;
 }
 
 .event-detail {
   margin: 5px 10px 5px 10px;
-  font-family: "GeneralSans-Semibold";
-  src: url("../public/fonts/GeneralSans-Bold.ttf") format("truetype");
+  font-family: "GeneralSans-Medium";
+  src: url("../public/fonts/GeneralSans-Medium.ttf") format("truetype");
 }
 
 .event-title {
+  padding-top: 5px;
   font-family: "GeneralSans-bold";
   src: url("../public/fonts/GeneralSans-Bold.ttf") format("truetype");
 }
+
+.tooltip{
+  opacity: 1;
+  visibility: visible;
+  
+}
+
 .event-desc {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -151,18 +170,48 @@
   width: 100%;
 }
 .box {
-  position: absolute;
-  background-color: #e23f2e;
+  /* position: absolute; */
+  /* background-color: #e23f2e;
   left: 55%;
   bottom: 100px;
   right: 10px;
   height: 34px;
   width: 90px;
-  border-radius: 4px;
+  border-radius: 4px; */
+  /* width: 50px;
+        height: 0;
+        border-top: -20px solid #e23f2e;
+        border-bottom: 20px solid #e23f2e;
+        border-bottom: 15px solid transparent;
+        float: right;
+        margin-bottom: 20px;
+        font-size: 17px;
+        font-weight:700;
+        position: absolute;
+        right: 13px;
+        bottom: 70px; */
+  
+}
+
+.bookmark{
+  width: 55px;
+  height: 50px;
+  position: absolute;
+  bottom: 145px;
+  left: 200px;
+}
+
+.bookmark-content{
+  position: absolute;
+  left: 216px;
+  color: white;
+  bottom: 148px;
 }
 
 .box-content {
-  padding-top: 5px;
+  position: absolute;
+  bottom: -12px;
+  left: 20px;
   color: white;
   font-family: "GeneralSans-Semibold";
   src: url("../public/fonts/GeneralSans-Bold.ttf") format("truetype");
@@ -178,6 +227,10 @@
   margin-right: 10px;
 }
 
+.inner-detail{
+  height: 45px;
+  /* margin-top: -40px; */
+}
 .event-detail > div > .inner-detail {
   display: flex;
   flex-direction: row;
@@ -192,14 +245,15 @@
 
 /* --------Slider---------- */
 .slider-container {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   position: relative;
 }
 
 .popup-details {
   margin-right: 30px;
   margin-left: 30px;
-  margin-bottom: 5px;
+  /* margin-bottom: 5px; */
+  margin-top: -30px;
   color: #888888;
   display: flex;
   flex-direction: row;
@@ -216,6 +270,7 @@
 .popup-title {
   margin-right: 30px;
   margin-left: 30px;
+  margin-bottom: -20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -223,9 +278,13 @@
   src: url("../public/fonts/GeneralSans-Bold.ttf") format("truetype");
 }
 
+.popup-title > h3{
+  margin-top: -5px;
+}
 .popup-title > button {
   height: 30px;
   width: 70px;
+  margin-top: -5px;
   background-color: white;
   border-color: #f6f6f6;
   border-style: double;
@@ -239,23 +298,24 @@
   cursor: pointer;
 }
 
-.popup-title > button:hover{
+.popup-title > button:hover {
   background-color: #222;
   color: white;
 }
 .comment {
   margin-right: 30px;
   margin-left: 30px;
+  margin-top: -15px;
 }
 
-.comment > h5{
+.comment > h5 {
   font-family: "GeneralSans-Bold";
   src: url("../public/fonts/GeneralSans-Bold.ttf") format("truetype");
 }
 .popup-desc {
   margin-right: 30px;
   margin-left: 30px;
-  margin-top: -20px;
+  margin-top: -30px;
   color: #666666;
   font-size: 14px;
   line-height: 26px;
@@ -264,17 +324,17 @@
   font-family: "GeneralSans-Regular";
   src: url("../public/fonts/GeneralSans-Regular.ttf") format("truetype");
 }
-textarea {
+.comment-area {
   border-radius: 2px;
   margin-top: -10px;
   resize: none;
   width: 436px;
-  height: 100px;
+  height: 50px;
   background-color: #f6f6f6;
   padding: 10px;
 }
 
-.comment > button{
+.comment > button {
   margin-top: 10px;
   height: 30px;
   width: 70px;
@@ -284,35 +344,39 @@ textarea {
   border-style: double;
   border-radius: 4px;
   border-width: 1.5px;
-  font-family: 'GeneralSans-Regular';
-  src: url('../public/fonts/GeneralSans-Regular.ttf') format('truetype');
+  font-family: "GeneralSans-Regular";
+  src: url("../public/fonts/GeneralSans-Regular.ttf") format("truetype");
   font-size: 12px;
   line-height: 25px;
   letter-spacing: 0.04em;
   cursor: pointer;
 }
 
-.comment > button:hover{
+.comment > button:hover {
   background-color: #222;
   color: white;
 }
 
-
 /*------------SignUp----------------*/
 
-.centered-div{
+.signup > .centered-div{
+  width: 400px;
+  height: 430px;
+  margin-top: 9%;
+}
+.centered-div {
   width: 400px;
   height: 400px;
   position: absolute;
-  top:0;
-  bottom:0;
-  right:0;
+  top: 0;
+  bottom: 0;
+  right: 0;
   left: 0;
-  left:35%;
+  left: 35%;
   margin-top: 10%;
   /* background-color: lightblue; */
   /* display: table-cell;  */
-   vertical-align: middle;
+  vertical-align: middle;
   align-items: center;
   justify-content: center;
   border-radius: 4px 4px 4px 4px;
@@ -321,7 +385,7 @@ textarea {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
 }
 
-.sign-wraper{
+.sign-wraper {
   height: 400px;
   width: 400px;
   display: table;
@@ -329,34 +393,37 @@ textarea {
   flex-direction: column; */
 }
 
-.MuiTextField-root{
+.MuiTextField-root {
   background-color: #f6f6f6;
   border: none;
   width: 200px;
 }
 
-.MuiTextField-root:hover{
-  background-origin: none;
-  
-}
-.sign-inputs{
+.sign-inputs {
   display: table-cell;
   text-align: center;
   vertical-align: middle;
-  font-family: 'GeneralSans-Regular';
-  src: url('../public/fonts/GeneralSans-Regular.ttf') format('truetype');
+  font-family: "GeneralSans-Regular";
+  src: url("../public/fonts/GeneralSans-Regular.ttf") format("truetype");
 }
 
-.sign-title{
+.sign-title {
   position: absolute;
   left: 35%;
   margin-right: 280px;
-  margin-top: 60px; 
+  margin-top: 60px;
   font-family: "GeneralSans-Bold";
   src: url("../public/fonts/GeneralSans-Bold.ttf") format("truetype");
 }
 
-.sign-button{
+.signup-inputs {
+  vertical-align: middle;
+  font-family: "GeneralSans-Regular";
+  src: url("../public/fonts/GeneralSans-Regular.ttf") format("truetype");
+  margin-top: 10px;
+}
+
+.sign-button {
   background-color: #e23f2e; /* Green */
   margin-top: 8px;
   border: none;
@@ -371,19 +438,191 @@ textarea {
   font-size: 16px;
   margin-bottom: 20px;
   cursor: pointer;
-  font-family: 'GeneralSans-Regular';
-  src: url('../public/fonts/GeneralSans-Regular.ttf') format('truetype');
+  font-family: "GeneralSans-Regular";
+  src: url("../public/fonts/GeneralSans-Regular.ttf") format("truetype");
 }
 
-.sign-link{
+.sign-link {
   color: #e23f2e;
   text-decoration: none;
-  font-family: 'GeneralSans-Regular';
-  src: url('../public/fonts/GeneralSans-Regular.ttf') format('truetype');
+  font-family: "GeneralSans-Regular";
+  src: url("../public/fonts/GeneralSans-Regular.ttf") format("truetype");
 }
 
-a{
+a {
   text-decoration: none;
-    cursor: pointer;
+  cursor: pointer;
 }
 
+/*-----------Create Event Page------------*/
+
+.create-title {
+  margin-left: 345px;
+  margin-bottom: 100px;
+}
+.create-container {
+  width: 600px;
+  height: 450px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 27%;
+  margin-top: 6%;
+  border-radius: 4px 4px 4px 4px;
+  box-shadow: 2px 2px 2px 2px rgba(0.1, 0.1, 0.1, 0.1);
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.create-box {
+  /* height: 400px; */
+  /* width: 720px; */
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 20px;
+  /* margin-bottom: 70px; */
+  /* display: table; */
+  /* background-color: #e23f2e; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.event-f {
+  width: 240px;
+  font-family: "GeneralSans-Regular";
+  src: url("../public/fonts/GeneralSans-Regular.ttf") format("truetype");
+}
+
+.event-f-d{
+  width: 520px;
+  margin-top: 5px;
+  height: 70px;
+}
+
+.create-page-btn{
+  margin-top: 17px;
+  width: 200px;
+  height: 50px;
+  background-color: #e23f2e;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#file{
+}
+
+/*-----------------Joined Button Fireworks-------------------*/
+/* body {
+  font-size: 16px;
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  text-align: center;
+  background-color: #f8faff;
+} */
+/* .bubbly-button {
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  display: inline-block;
+  font-size: 1em;
+  padding: 1em 2em;
+  margin-top: 100px;
+  margin-bottom: 60px;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #ff0081;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.5);
+} */
+.bubbly-button:focus {
+  outline: 0;
+}
+.bubbly-button:before, .bubbly-button:after {
+  position: absolute;
+  content: '';
+  display: block;
+  width: 140%;
+  height: 100%;
+  left: -20%;
+  z-index: -1000;
+  transition: all ease-in-out 0.5s;
+  background-repeat: no-repeat;
+}
+.bubbly-button:before {
+  display: none;
+  top: -75%;
+  background-image: radial-gradient(circle, #e23f2e 20%, transparent 20%), radial-gradient(circle, transparent 20%, #e23f2e 20%, transparent 30%), radial-gradient(circle, #e23f2e 20%, transparent 20%), radial-gradient(circle, #e23f2e 20%, transparent 20%), radial-gradient(circle, transparent 10%, #e23f2e 15%, transparent 20%), radial-gradient(circle, #e23f2e 20%, transparent 20%), radial-gradient(circle, #e23f2e 20%, transparent 20%), radial-gradient(circle, #e23f2e 20%, transparent 20%), radial-gradient(circle, #e23f2e 20%, transparent 20%);
+  background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%;
+}
+.bubbly-button:after {
+  display: none;
+  bottom: -75%;
+  background-image: radial-gradient(circle, #e23f2e 20%, transparent 20%), radial-gradient(circle, #e23f2e 20%, transparent 20%), radial-gradient(circle, transparent 10%, #e23f2e 15%, transparent 20%), radial-gradient(circle, #e23f2e 20%, transparent 20%), radial-gradient(circle, #e23f2e 20%, transparent 20%), radial-gradient(circle, #e23f2e 20%, transparent 20%), radial-gradient(circle, #e23f2e 20%, transparent 20%);
+  background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%, 20% 20%;
+}
+.bubbly-button:active {
+  transform: scale(0.9);
+  background-color: #e60074;
+  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
+}
+.bubbly-button.animate:before {
+  display: block;
+  animation: topBubbles ease-in-out 0.75s forwards;
+}
+.bubbly-button.animate:after {
+  display: block;
+  animation: bottomBubbles ease-in-out 0.75s forwards;
+}
+@keyframes topBubbles {
+  0% {
+    background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%;
+ }
+  50% {
+    background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 90% 30%;
+ }
+  100% {
+    background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%;
+    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+ }
+}
+@keyframes bottomBubbles {
+  0% {
+    background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%, 70% -10%, 70% 0%;
+ }
+  50% {
+    background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%, 105% 0%;
+ }
+  100% {
+    background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 10%;
+    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+ }
+}
+
+/*-----------------List Items-------------------*/
+
+.list-item{
+  border-radius: 4px;
+  margin: 3%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+.item-inlist{
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+.imges-inlist{
+  border-radius: 4px;
+  width: 150px;
+  height: 120px;
+  margin: 10px;
+}
