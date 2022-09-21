@@ -18,6 +18,7 @@ export default function CreateEvent() {
   const [country, setCountry] = React.useState("");
   const [city, setCity] = React.useState("");
   const [street, setStreet] = React.useState("");
+  const [type , setType] =  React.useState("");
   const [description, setDescription] = React.useState("");
   const [images, setImages] = React.useState(false);
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ export default function CreateEvent() {
     params.append("city", city)
     params.append("street", street)
     params.append("description", description)
+    params.append("kind", type)
     params.append("image", image)
     axios
       .post("http://127.0.0.1:3000/events", params, {
@@ -148,6 +150,14 @@ export default function CreateEvent() {
           />
           <input className="event-f" size="200" type="file" id="file" accept="image/*" multiple={true} onChange={onImageChange}/>
           {/* <label for="file">Choose a file</label> */}
+          <TextField
+            className="event-f"
+            id="outlined-basic"
+            label="Kind"
+            onChange={(event) => setType(event.target.value)}
+            value={type}
+            variant="outlined"
+          />
           <textarea
             onChange={(event) => setDescription(event.target.value)}
             value={description}

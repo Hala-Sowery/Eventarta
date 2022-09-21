@@ -36,7 +36,8 @@ class EventsController < ApplicationController
                 images: images,
                 joined: event.event_members.count,
                 joined_status: joined_status,
-                is_approved: event.is_approved
+                is_approved: event.is_approved,
+                kind: event.kind
             }
          end
         render json: the_events
@@ -44,7 +45,7 @@ class EventsController < ApplicationController
 
     def create
         begin
-            event = Event.create!(user_id: @user.id,title: params[:title], description: params[:description], country: params[:country], city: params[:city], street: params[:street], date: params[:date], capacity: params[:capacity])
+            event = Event.create!(user_id: @user.id,title: params[:title], description: params[:description], country: params[:country], city: params[:city], street: params[:street], date: params[:date], capacity: params[:capacity], kind: params[:kind])
             # image_url=rails_blob_path(@event.image , only_path: true) if @event.image.attached?
             if params[:image]
                 event.images.attach(params[:image])

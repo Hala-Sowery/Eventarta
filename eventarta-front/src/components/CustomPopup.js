@@ -5,100 +5,132 @@ import PropTypes from "prop-types";
 import SimpleImageSlider from "react-simple-image-slider";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Swal from 'sweetalert2'
-import 'sweetalert2/src/sweetalert2.scss'
+import Swal from "sweetalert2";
+import "sweetalert2/src/sweetalert2.scss";
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Rating from "@mui/material/Rating";
 
-const CustomPopup = (props ) => {
-  var animateButton = function(e) {
-
+const CustomPopup = (props) => {
+  var animateButton = function (e) {
     e.preventDefault();
     //reset animation
-    e.target.classList.remove('animate');
-    
-    e.target.classList.add('animate');
-    setTimeout(function(){
-      e.target.classList.remove('animate');
-    },700);
+    e.target.classList.remove("animate");
+
+    e.target.classList.add("animate");
+    setTimeout(function () {
+      e.target.classList.remove("animate");
+    }, 700);
   };
   // console.log(props)
   var bubblyButtons = document.getElementsByClassName("bubbly-button");
-  
+
   for (var i = 0; i < bubblyButtons.length; i++) {
-    bubblyButtons[i].addEventListener('click', animateButton, false);
+    bubblyButtons[i].addEventListener("click", animateButton, false);
   }
   const [show, setShow] = useState(false);
-  // const [SignedUser, setSignedUser] = useState(false);
   const [content, setContent] = useState("");
   const [joinedStatus, setJoinedStatus] = useState("");
-  const navigate = useNavigate();
-  
+  const [showComment, setShowComment] = useState(false);
+  const [value, setValue] = React.useState(2);
+  const [theme, setTheme] = useState("");
+
+  // const navigate = useNavigate();
+
   const closeHandler = (e) => {
     setShow(false);
     props.onClose(false);
   };
 
+  useEffect(() =>{
+    if(props.reset === true){
+      setContent("");
+      setValue(0);
+      props.setReset();
+    }
+  },[props.reset])
+
   useEffect(() => {
     setShow(props.show);
-    if(props.status === true)
-    {
+    if (props.status === true) {
       setJoinedStatus("Un join");
-    }
-    else{
+      setShowComment(true);
+    } else {
       setJoinedStatus("Join");
+      setShowComment(false);
     }
-    console.log(props.status)
+    const mode = localStorage.getItem("theme");
+    setTheme(mode)
+    // document.body.popup.style.getElementsByClassName("popup") = ""
+    
   }, [props.show]);
 
-  function JoinEvent(){
+  function JoinEvent() {
     setJoinedStatus("Loading");
 
-    const token = localStorage.getItem('token');
-    axios.post('http://127.0.0.1:3000/event_members', {
-      event_id: props.activeCard.id,
-    },{
-      headers: {
-        Authorization: 'Bearer ' + token
-      },
-    }).then(function (response) {
-      if(props.refresh){
-        props.refresh()
-      }
-      if(joinedStatus === "Join")
-      {
-        setJoinedStatus("Un join");
-      }
-      else{
-        setJoinedStatus("Join");
-      }
+    const token = localStorage.getItem("token");
+    axios
+      .post(
+        "http://127.0.0.1:3000/event_members",
+        {
+          event_id: props.activeCard.id,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      )
+      .then(function (response) {
+        if (props.refresh) {
+          props.refresh();
+        }
+        if (joinedStatus === "Join") {
+          setJoinedStatus("Un join");
+          props.remain = props.activeCard.capcity - props.activeCard.joined;
+          setShowComment(true);
+          console.log(props.remain);
+        } else {
+          setJoinedStatus("Join");
+          props.remain = props.activeCard.capcity - props.activeCard.joined;
+          setShowComment(false);
+          console.log(props.remain);
+        }
       })
-      .catch(function (error) {
+      .catch(function (error) {});
+  }
+  function addComment() {
+    const token = localStorage.getItem("token");
+    // console.log(props.activeCard.id)
+    axios
+      .post(
+        "http://127.0.0.1:3000/comments",
+        {
+          event_id: props.activeCard.id,
+          content: content,
+          rate: value,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      )
+      .then(function (response) {
+        if (response.status == 200) {
+          Swal.fire({
+            title: "success!",
+            text: "Your comment has been saved!",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
       });
   }
-  function addComment(){
-    const token = localStorage.getItem('token');
-    // console.log(props.activeCard.id)
-    axios.post('http://127.0.0.1:3000/comments', {
-      event_id: props.activeCard.id,
-      content: content,
-    },{
-      headers: {
-        Authorization: 'Bearer ' + token
-      }})
-        .then(function (response){
-          if(response.status == 200){
-            Swal.fire({
-              title: 'success!',
-              text: "Your comment has been saved!",
-              icon: 'success',
-              confirmButtonText: 'Ok'
-            })
-          }
-        }
-           ).catch((error) => {
-              console.log(error.response.data.message)
-           })
-}
-  if(props.images !== undefined){
+  if (props.images !== undefined) {
     return (
       <div
         style={{
@@ -107,7 +139,11 @@ const CustomPopup = (props ) => {
         }}
         className={popupStyles.overlay}
       >
-        <div className={popupStyles.popup}>
+        <div 
+      style={{
+          background: theme === "dark" ? "#222222" : "#fff",
+        }}
+         className={popupStyles.popup} id="box">
           <span className={popupStyles.close} onClick={closeHandler}>
             &times;
           </span>
@@ -124,24 +160,46 @@ const CustomPopup = (props ) => {
               </div>
             </center>
             <div className="popup-title">
-            <h3>{props.title}</h3>
-            <button className="bubbly-button" onClick={JoinEvent} disabled={joinedStatus === "Loading"}>{joinedStatus}</button>
+              <h3>{props.title}</h3>
+              <button
+                className="bubbly-button"
+                onClick={JoinEvent}
+                disabled={joinedStatus === "Loading"}
+              >
+                {joinedStatus}
+              </button>
             </div>
             <section className="popup-details">
               <h5>{props.Date}</h5>
               <h5>{props.Location}</h5>
-              <h5>{(props.Capcity-props.joined)+" "}capacity</h5>
+              <h5>{props.remain + " "}capacity</h5>
             </section>
             <section className="popup-desc">
               {/* <textarea>{props.Description}</textarea> */}
               <h5>{props.Description}</h5>
             </section>
-            <section className="comment">
-              <h5>comment:</h5>
-              <textarea  className="comment-area" onChange={(event) => setContent(event.target.value)}
-                value={content} placeholder={"Add your comment here..."}></textarea>
-              <button onClick={addComment}>Submit</button>
-            </section>
+            {showComment && (
+              <section className="comment">
+                <div className="rating">
+                  <h5 className="h5">comment:</h5>
+                  <Rating
+                    name="simple-controlled"
+                    value={value}
+                    onChange={(event, newValue) => {
+                      setValue(newValue);
+                    }}
+                  />
+                </div>
+
+                <textarea
+                  className="comment-area"
+                  onChange={(event) => setContent(event.target.value)}
+                  value={content}
+                  placeholder={"Add your comment here..."}
+                ></textarea>
+                <button onClick={addComment}>Submit</button>
+              </section>
+            )}
           </div>
         </div>
       </div>
@@ -160,7 +218,11 @@ CustomPopup.propTypes = {
   images: PropTypes.array,
   status: PropTypes.bool,
   joined: PropTypes.number,
-  refresh: PropTypes.func
+  refresh: PropTypes.func,
+  isDark: PropTypes.bool,
+  reset: PropTypes.bool, 
+  setReset: PropTypes.func,
+  remain: PropTypes.number,
 };
 
 export default CustomPopup;

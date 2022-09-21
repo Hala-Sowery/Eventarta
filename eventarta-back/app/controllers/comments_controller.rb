@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     end
     def create
         begin
-            comment = Comment.create!(user_id: @user.id, event_id: params[:event_id], content: params[:content])
+            comment = Comment.create!(user_id: @user.id, event_id: params[:event_id], content: params[:content], rate: params[:rate])
 
             render json: {
                 status: "succeeded"

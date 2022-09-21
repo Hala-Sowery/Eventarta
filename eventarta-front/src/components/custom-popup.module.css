@@ -10,11 +10,16 @@
   transition: opacity 0ms;
   z-index: 2;
 }
+.popup{
+  /* background-color: #222222; */
+
+}
+
 .popup {
   
   margin: 70px auto;
   padding: 20px;
-  background: #fff;
+  /* background: #fff; */
   border-radius: 5px;
   width: 40%;
   height: 76%;;

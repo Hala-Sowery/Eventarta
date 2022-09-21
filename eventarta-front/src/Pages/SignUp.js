@@ -7,6 +7,8 @@ import Swal from 'sweetalert2'
 import 'sweetalert2/src/sweetalert2.scss'
 
 export default function SignUp(){
+  const theme = localStorage.getItem("theme");
+    document.body.className = theme;
   const [name , setName] = React.useState("")
   const [email , setEmail] = React.useState("")
   const [password , setPassword] = React.useState("")

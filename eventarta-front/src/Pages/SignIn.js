@@ -5,6 +5,8 @@ import TextField from "@mui/material/TextField";
 import axios from "axios";
 
 export default function SignIn() {
+  const theme = localStorage.getItem("theme");
+    document.body.className = theme;
   const [email , setEmail] = React.useState("")
   const [password , setPassword] = React.useState("")
   const navigate = useNavigate();

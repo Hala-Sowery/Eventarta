@@ -45,7 +45,8 @@ class UsersController < ApplicationController
                 images: images,
                 joined: event.event_members.count,
                 joined_status: joined_status,
-                is_approved: event.is_approved
+                is_approved: event.is_approved,
+                kind: event.kind
             }
          end
 
@@ -85,7 +86,8 @@ class UsersController < ApplicationController
                 images: images,
                 joined: event.event_members.count,
                 joined_status: joined_status,
-                is_approved: event.is_approved
+                is_approved: event.is_approved,
+                kind: event.kind
             }
          end
 
