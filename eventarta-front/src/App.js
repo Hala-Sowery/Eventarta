@@ -155,6 +155,20 @@ function App() {
         reset={reset}
         setReset={() => setReset(false)}
         remain={remainCapacity}
+        setJoined={(value) => {
+          if(value === "join"){
+            setActiveCard(obj => ({
+              ...obj,
+              ...{"joined":activeCard.joined-1}
+            }))
+          }
+          else if(value==="un join"){
+            setActiveCard(obj => ({
+              ...obj,
+              ...{"joined":activeCard.joined+1}
+            }))
+          }
+        }}
       ></CustomPopup>
       <div className="UpComing-create">
         <div className="signedName">
@@ -162,7 +176,7 @@ function App() {
           <h2 className="home-title">{"UpComing Events"}</h2>
         </div>
 
-        <Box sx={{ width: 200 }}>
+        {view === "module" &&(<Box sx={{ width: 200 }}>
           <Slider
             className="margin-just"
             getAriaValueText={valuetext}
@@ -172,7 +186,7 @@ function App() {
             min={270}
             max={570}
           />
-        </Box>
+        </Box>)}
         <ToggleButtonGroup
           className="toggle-group"
           orientation="horizontal"

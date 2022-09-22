@@ -233,18 +233,23 @@
 .event-loc {
   font-family: "GeneralSans-Semibold";
     src: url('../public/fonts/GeneralSans-Bold.ttf') format('truetype');
-  font-size: 13px;
-  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: horizontal;
 }
 
 .loc{
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  text-overflow: ellipsis;
+  /* display: -webkit-box;
+  -webkit-line-clamp: 1; */
+  /* white-space: nowrap;
   overflow: hidden;
-  border: none;
-  opacity: 1;
+  text-overflow: ellipsis;
+  -webkit-box-orient: horizontal; */
+  /* text-overflow: ellipsis; */
+  /* overflow: hidden;
+  border: none; */
+  /* opacity: 1; */
 }
 
 .event-detail {
@@ -352,7 +357,11 @@
 }
 
 .inner-detail{
-  height: 45px;
+  height: 40px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   /* margin-top: -40px; */
 }
 .event-detail > div > .inner-detail {

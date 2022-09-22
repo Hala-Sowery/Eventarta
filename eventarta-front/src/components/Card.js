@@ -54,11 +54,11 @@ export default function MyCard({ props, setActiveCard, size }) {
                   </div>
 
                   <div
-                    className="inner-detail loc"
+                    className="inner-detail"
                   >
                     <img src={Location} className="detail-logos loc-img"></img>
                     <ReactTooltip className="tooltip" backgroundColor="black" />
-                    <h5
+                    <h5 className="inner-detail"
                       data-tip={
                         event.country +
                         " - " +
@@ -88,7 +88,7 @@ export default function MyCard({ props, setActiveCard, size }) {
           <a onClick={() => setActiveCard(event)} key={event.id}>
             <Card
               className="margin-just new-card"
-              sx={{ maxWidth: size, maxHeight: size <= 270 ? 335 : size+40 }}
+              sx={{ maxWidth: size}}
               variant="outlined"
             >
               {card}

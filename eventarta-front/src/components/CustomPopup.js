@@ -8,7 +8,6 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import "sweetalert2/src/sweetalert2.scss";
 import * as React from "react";
-import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 
 const CustomPopup = (props) => {
@@ -22,7 +21,7 @@ const CustomPopup = (props) => {
       e.target.classList.remove("animate");
     }, 700);
   };
-  // console.log(props)
+
   var bubblyButtons = document.getElementsByClassName("bubbly-button");
 
   for (var i = 0; i < bubblyButtons.length; i++) {
@@ -34,8 +33,6 @@ const CustomPopup = (props) => {
   const [showComment, setShowComment] = useState(false);
   const [value, setValue] = React.useState(2);
   const [theme, setTheme] = useState("");
-
-  // const navigate = useNavigate();
 
   const closeHandler = (e) => {
     setShow(false);
@@ -61,7 +58,6 @@ const CustomPopup = (props) => {
     }
     const mode = localStorage.getItem("theme");
     setTheme(mode)
-    // document.body.popup.style.getElementsByClassName("popup") = ""
     
   }, [props.show]);
 
@@ -87,12 +83,12 @@ const CustomPopup = (props) => {
         }
         if (joinedStatus === "Join") {
           setJoinedStatus("Un join");
-          props.remain = props.activeCard.capcity - props.activeCard.joined;
+          props.setJoined("un join");
           setShowComment(true);
           console.log(props.remain);
         } else {
           setJoinedStatus("Join");
-          props.remain = props.activeCard.capcity - props.activeCard.joined;
+          props.setJoined("join");
           setShowComment(false);
           console.log(props.remain);
         }
@@ -101,7 +97,6 @@ const CustomPopup = (props) => {
   }
   function addComment() {
     const token = localStorage.getItem("token");
-    // console.log(props.activeCard.id)
     axios
       .post(
         "http://127.0.0.1:3000/comments",
@@ -222,6 +217,7 @@ CustomPopup.propTypes = {
   isDark: PropTypes.bool,
   reset: PropTypes.bool, 
   setReset: PropTypes.func,
+  setJoined: PropTypes.func,
   remain: PropTypes.number,
 };
 
