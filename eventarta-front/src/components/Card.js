@@ -20,20 +20,24 @@ export default function MyCard({ props, setActiveCard, size }) {
         const newDate = day + "-" + month + "-" + year;
         const card = (
           <React.Fragment>
-            <CardContent>
-              <center>
+            <CardContent className="card-content">
+              <div className="card-header">
+                <div className="left-div">
+                  <p width="60px"></p>
+                </div>
                 <h4
+                className="card-title"
                   style={{
                     margin: "0px 0px 10px 10px",
-                    fontSize: size / 15,
+                    fontSize: size <= 470 ? size / 15 : size / 18,
                   }}
                 >
                   {event.title}
                 </h4>
-              </center>
-              
-              <div className="card-img">
-                <img width={size} height={size / 2} src={event.images[0]}></img>
+                <div>
+                  <img src={Bookmark} className="shabara"></img>
+                  <h5 className="bookmark-content">{event.joined}</h5>
+                </div>
               </div>
               {/* <div className="box-container">
                   <div className="box">
@@ -43,6 +47,10 @@ export default function MyCard({ props, setActiveCard, size }) {
                     </div>
                   </div>
                 </div> */}
+              <div className="card-img">
+                <img width={size} height={size / 2} src={event.images[0]}></img>
+              </div>
+
               <section className="event-detail">
                 <div>
                   <div className="inner-detail" width={size} height={size}>
@@ -53,12 +61,11 @@ export default function MyCard({ props, setActiveCard, size }) {
                     </div>
                   </div>
 
-                  <div
-                    className="inner-detail"
-                  >
+                  <div className="inner-detail">
                     <img src={Location} className="detail-logos loc-img"></img>
                     <ReactTooltip className="tooltip" backgroundColor="black" />
-                    <h5 className="inner-detail"
+                    <h5
+                      className="inner-detail"
                       data-tip={
                         event.country +
                         " - " +
@@ -88,7 +95,7 @@ export default function MyCard({ props, setActiveCard, size }) {
           <a onClick={() => setActiveCard(event)} key={event.id}>
             <Card
               className="margin-just new-card"
-              sx={{ maxWidth: size}}
+              sx={{ maxWidth: size }}
               variant="outlined"
             >
               {card}

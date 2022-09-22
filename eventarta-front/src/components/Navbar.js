@@ -16,17 +16,6 @@ export default function Navbar({ SignedUser }) {
     window.localStorage.setItem('theme', mode)
     setTheme(mode)
 };
-  // useEffect(() => {
-
-  //   const theme = localStorage.getItem("theme");
-  //   if (theme === "light") {
-  //     setTheme("dark");
-  //     // document.getElementById('dn').checked;
-  //   } else {
-  //     setTheme("light");
-  //   }
-  //   document.body.className = theme;
-  // }, [theme]);
 
   useEffect(() => {
     const localTheme = window.localStorage.getItem('theme');
